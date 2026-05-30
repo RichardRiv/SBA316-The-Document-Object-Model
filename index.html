@@ -25,7 +25,54 @@
 				</div>
 				<h2>Your Answers:</h2>
 			</div>
-			<div class="form-container"></div>
+			<div id="form" class="form-container">
+				<template id="question-template">
+					<div class="question-container">
+						<h3 id="question-title">
+							Which method allows you to set a custom validation message for an
+							input element?
+						</h3>
+						<div id="option" class="radios-container">
+							<div>
+								<input
+									type="radio"
+									id="setCustomMessage"
+									name="setCustomMessage"
+								/>
+								<label for="setCustomMessage" id="question-opt"
+									>setCustomMessage()</label
+								>
+							</div>
+							<!-- <div>
+								<input
+									type="radio"
+									id="setErrorMessage"
+									name="setErrorMessage"
+								/>
+								<label for="setErrorMessage" id="question-opt"
+									>setErrorMessage()</label
+								>
+							</div>
+							<div>
+								<input type="radio" id="setCustomError" name="setCustomError" />
+								<label for="setCustomError" id="question-opt"
+									>setCustomError()</label
+								>
+							</div>
+							<div>
+								<input
+									type="radio"
+									id="setCustomValidity"
+									name="setCustomValidity"
+								/>
+								<label for="setCustomValidity" id="question-opt"
+									>setCustomValidity()</label
+								>
+							</div> -->
+						</div>
+					</div>
+				</template>
+			</div>
 		</div>
 	</body>
 </html>
