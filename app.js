@@ -105,15 +105,15 @@ const form = document.querySelector('#form');
 const template = document.querySelector('#question-template');
 
 for (let question of questions) {
-	let clone = template.content.cloneNode(true);
-	let title = clone.querySelector('#question-title');
+	const clone = template.content.cloneNode(true);
+	const title = clone.querySelector('#question-title');
 	title.textContent = `${question.id}. ${question.questionTitle}`;
 
-	let radiosContainer = clone.querySelector('.radios-container');
+	const radiosContainer = clone.querySelector('.radios-container');
 	for (option of question.options) {
-		let divEl = document.createElement('div');
-		let inputEl = document.createElement('input');
-		let labelEl = document.createElement('label');
+		const divEl = document.createElement('div');
+		const inputEl = document.createElement('input');
+		const labelEl = document.createElement('label');
 
 		divEl.style.display = 'flex';
 		divEl.style.gap = '10px';
@@ -131,5 +131,19 @@ for (let question of questions) {
 
 	form.appendChild(clone);
 }
-
 form.lastElementChild.style.paddingBottom = '30px';
+
+const divEl = document.createElement('div');
+const btnEl = document.createElement('button');
+
+divEl.style.position = 'relative';
+divEl.style.height = '30px';
+// divEl.style.backgroundColor = 'red';
+btnEl.textContent = 'Submit!';
+btnEl.style.position = 'absolute';
+btnEl.style.right = '0';
+btnEl.style.padding = '5px';
+btnEl.style.cursor = 'pointer';
+
+divEl.appendChild(btnEl);
+form.appendChild(divEl);
