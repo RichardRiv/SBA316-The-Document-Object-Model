@@ -181,14 +181,8 @@ const calculateTime = () => {
 	return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 };
 
-const submitForm = (e) => {
-	e.preventDefault();
-
-	const timerEl = document.querySelector('#timer');
-	const formattedTime = calculateTime();
-	timerEl.textContent = formattedTime;
-
-	const userAnswers = questions.map((question) => {
+const getUserAnswers = () => {
+	return questions.map((question) => {
 		const selected = form.querySelector(
 			`input[name="question-${question.id}"]:checked`,
 		);
@@ -204,6 +198,16 @@ const submitForm = (e) => {
 			isCorrect,
 		};
 	});
+};
+
+const submitForm = (e) => {
+	e.preventDefault();
+
+	const timerEl = document.querySelector('#timer');
+	const formattedTime = calculateTime();
+	timerEl.textContent = formattedTime;
+
+	const userAnswers = getUserAnswers();
 
 	let answersCorrect = 0;
 	userAnswers.forEach((answer) => {
