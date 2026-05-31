@@ -99,7 +99,29 @@ const questions = [
 		answer:
 			'An interface for interacting with the browser environment from JavaScript',
 	},
+	{
+		id: 11,
+		questionTitle:
+			'What is the primary purpose of the window.navigator object?',
+		options: [
+			"To interface with the computer's file system",
+			'To handle navigation requests to other pages',
+			"To navigate the browser's history",
+			'To provide information about the web browser and its capabilities',
+		],
+		answer: 'To provide information about the web browser and its capabilities',
+	},
+	{
+		id: 12,
+		questionTitle:
+			'What method can be called on a form element to programmatically submit it?',
+		options: ['post()', 'submit()', 'send()', 'finalize()'],
+		answer: 'submit()',
+	},
 ];
+
+const questionsLength = document.getElementById('questions-length');
+questionsLength.textContent = questions.length;
 
 const form = document.querySelector('#form');
 const template = document.querySelector('#question-template');
@@ -118,10 +140,11 @@ for (let question of questions) {
 		divEl.style.display = 'flex';
 		divEl.style.gap = '10px';
 		inputEl.type = 'radio';
-		inputEl.id = option;
+		inputEl.id = `${option}-${question.id}`;
 		inputEl.name = `question-${question.id}`;
 		inputEl.value = option;
-		labelEl.setAttribute('for', option);
+		inputEl.required = true;
+		labelEl.setAttribute('for', `${option}-${question.id}`);
 		labelEl.textContent = option;
 
 		divEl.appendChild(inputEl);
@@ -138,7 +161,6 @@ const btnEl = document.createElement('button');
 
 divEl.style.position = 'relative';
 divEl.style.height = '30px';
-// divEl.style.backgroundColor = 'red';
 btnEl.textContent = 'Submit!';
 btnEl.style.position = 'absolute';
 btnEl.style.right = '0';
@@ -147,3 +169,45 @@ btnEl.style.cursor = 'pointer';
 
 divEl.appendChild(btnEl);
 form.appendChild(divEl);
+
+const submitForm = (e) => {
+	e.preventDefault();
+
+	const userAnswers = questions.map((question) => {
+		const selected = form.querySelector(
+			`input[name="question-${question.id}"]:checked`,
+		);
+		const isCorrect = selected.value === question.answer;
+
+		selected.parentElement.style.border = isCorrect
+			? '5px solid green'
+			: '5px solid red';
+
+		return {
+			id: question.id,
+			selected: selected.value,
+			isCorrect,
+		};
+	});
+
+	let answersCorrect = 0;
+	userAnswers.forEach((answer) => {
+		if (answer.isCorrect) answersCorrect++;
+	});
+
+	const maxPossibleScore = 100;
+	const questionCount = questions.length;
+	const score = (answersCorrect / questionCount) * maxPossibleScore;
+
+	const percentageEl = document.querySelector('#percentage');
+	const questionsCorrectEl = document.querySelector('#questions-correct');
+
+	percentageEl.textContent = `${score.toFixed(2)}%`;
+	questionsLength.textContent = questions.length;
+	questionsCorrectEl.textContent = answersCorrect;
+
+	const res = document.querySelector('#results-invisible');
+	res.classList = 'score-time';
+};
+
+form.addEventListener('submit', submitForm);

@@ -10,22 +10,22 @@
 	<body>
 		<div class="container">
 			<div class="results-container">
-				<h1>Results</h1>
-				<h2>Richard Rivera Urgiles</h2>
-				<div class="score-time">
-					<p class="percentage">96.67%</p>
-					<p class="points">
-						29<br />
-						Out of 30 points
+				<h1>Hi there stranger!</h1>
+				<h2>Your results will appear when quiz is completed:</h2>
+				<div id="results-invisible" class="invisible">
+					<p id="percentage" class="score-text">0.00%</p>
+					<p>
+						<span id="questions-correct" class="score-text">0</span><br />
+						Out of <span id="questions-length"></span> questions correct
 					</p>
-					<p class="time">
+					<!-- <p class="time">
 						08:35<br />
 						Time for this attempt
-					</p>
+					</p> -->
 				</div>
 				<h2>Your Answers:</h2>
 			</div>
-			<div id="form" class="form-container"></div>
+			<form id="form" class="form-container"></form>
 
 			<template id="question-template">
 				<div class="question-container">
