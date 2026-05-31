@@ -171,16 +171,21 @@ divEl.appendChild(btnEl);
 form.appendChild(divEl);
 
 let startTime = null;
+const calculateTime = () => {
+	const endTime = Date.now();
+	const elapsed = endTime - startTime;
+	const totalSeconds = Math.floor(elapsed / 1000);
+	const minutes = Math.floor(totalSeconds / 60);
+	const seconds = totalSeconds % 60;
+
+	return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
 const submitForm = (e) => {
 	e.preventDefault();
 
-	let endTime = Date.now();
-	let elapsed = endTime - startTime;
-	let totalSeconds = Math.floor(elapsed / 1000);
-	let minutes = Math.floor(totalSeconds / 60);
-	let seconds = totalSeconds % 60;
-	let formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-	let timerEl = document.querySelector('#timer');
+	const timerEl = document.querySelector('#timer');
+	const formattedTime = calculateTime();
 	timerEl.textContent = formattedTime;
 
 	const userAnswers = questions.map((question) => {
