@@ -166,6 +166,7 @@ btnEl.style.position = 'absolute';
 btnEl.style.right = '0';
 btnEl.style.padding = '5px';
 btnEl.style.cursor = 'pointer';
+btnEl.style.borderRadius = '10px';
 
 divEl.appendChild(btnEl);
 form.appendChild(divEl);
@@ -191,6 +192,8 @@ const getUserAnswers = () => {
 		selected.parentElement.style.border = isCorrect
 			? '5px solid green'
 			: '5px solid red';
+
+		selected.parentElement.style.borderRadius = isCorrect ? '5px ' : '5px';
 
 		return {
 			id: question.id,

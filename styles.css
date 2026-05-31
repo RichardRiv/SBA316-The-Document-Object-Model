@@ -10,6 +10,7 @@
 	align-items: center;
 	flex-direction: column;
 	padding: 10px 10px;
+	background-color: #4279b7;
 }
 
 .results-container {
@@ -17,7 +18,9 @@
 	height: 250px;
 	border: 1px solid gray;
 	padding: 30px 0px 0px 20px;
-	border-radius: 5px 5px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	max-width: 1000px;
+	background-color: white;
 }
 
 .invisible {
@@ -41,7 +44,9 @@
 	border: 1px solid gray;
 	width: 100%;
 	padding: 0px 20px 20px 20px;
-	border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 10px 10px;
+	max-width: 1000px;
+	background-color: white;
 }
 
 .question-container {
