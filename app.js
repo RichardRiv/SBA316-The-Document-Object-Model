@@ -170,8 +170,18 @@ btnEl.style.cursor = 'pointer';
 divEl.appendChild(btnEl);
 form.appendChild(divEl);
 
+let startTime = null;
 const submitForm = (e) => {
 	e.preventDefault();
+
+	let endTime = Date.now();
+	let elapsed = endTime - startTime;
+	let totalSeconds = Math.floor(elapsed / 1000);
+	let minutes = Math.floor(totalSeconds / 60);
+	let seconds = totalSeconds % 60;
+	let formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+	let timerEl = document.querySelector('#timer');
+	timerEl.textContent = formattedTime;
 
 	const userAnswers = questions.map((question) => {
 		const selected = form.querySelector(
@@ -208,6 +218,19 @@ const submitForm = (e) => {
 
 	const res = document.querySelector('#results-invisible');
 	res.classList = 'score-time';
-};
 
+	const attempt = {
+		percentage: score.toFixed(2),
+		score: answersCorrect,
+		time: formattedTime,
+	};
+
+	window.localStorage.setItem('results', JSON.stringify(attempt));
+	window.alert('Submitted!');
+};
 form.addEventListener('submit', submitForm);
+
+const startTimer = (e) => {
+	if (!startTime) startTime = Date.now();
+};
+form.addEventListener('click', startTimer);
