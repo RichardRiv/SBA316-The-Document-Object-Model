@@ -200,6 +200,16 @@ const getUserAnswers = () => {
 	});
 };
 
+const getCountOfCorrectAnswers = (userAnswers) => {
+	let answersCorrect = 0;
+
+	userAnswers.forEach((answer) => {
+		if (answer.isCorrect) answersCorrect++;
+	});
+
+	return answersCorrect;
+};
+
 const submitForm = (e) => {
 	e.preventDefault();
 
@@ -208,11 +218,7 @@ const submitForm = (e) => {
 	timerEl.textContent = formattedTime;
 
 	const userAnswers = getUserAnswers();
-
-	let answersCorrect = 0;
-	userAnswers.forEach((answer) => {
-		if (answer.isCorrect) answersCorrect++;
-	});
+	const answersCorrect = getCountOfCorrectAnswers(userAnswers);
 
 	const maxPossibleScore = 100;
 	const questionCount = questions.length;
